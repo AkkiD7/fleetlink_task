@@ -35,23 +35,6 @@ FLEETLINK/
 
 ***
 
-## ⚙️ Core Logic
-
-### Ride Duration Calculation
-
-For simplicity, the ride duration is calculated using a placeholder formula based on the absolute difference between postal codes. This is treated as the duration in hours.
-
-$$ \text{estimatedRideDurationHours} = |\text{toPincode} - \text{fromPincode}| \pmod{24} $$
-
-> **Note:** This is a highly simplified logic for demonstration purposes. In a real-world application, this would be replaced with a proper routing service API (e.g., Google Maps API, Mapbox).
-
-### Availability Check
-
-The system determines a vehicle's availability by checking for any existing bookings that would overlap with the requested new booking's time window (`startTime` to `endTime`). A vehicle is considered unavailable if there is any booking `(B)` such that:
-
-$$ (B_{startTime} < \text{new}_{endTime}) \text{ and } (B_{endTime} > \text{new}_{startTime}) $$
-
-***
 
 ## 📚 API Documentation
 
