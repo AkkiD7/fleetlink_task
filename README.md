@@ -1,7 +1,6 @@
-# FleetLink - Logistics Vehicle Booking System 🚚
+# FleetLink - Logistics Vehicle Booking System
 
 FleetLink is a full-stack application designed to manage and book logistics vehicles for B2B clients. It features a Node.js backend to handle vehicle management and booking logic, a React frontend for user interaction, and a MongoDB database for data persistence.
-
 The system allows administrators to add vehicles to the fleet and enables users to search for available vehicles based on capacity, route, and time, and then initiate a booking. The core logic ensures that vehicle availability is checked accurately to prevent scheduling conflicts.
 
 ***
