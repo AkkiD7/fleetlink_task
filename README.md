@@ -22,7 +22,7 @@ FLEETLINK/
 -   **Backend**: Node.js, Express.js
 -   **Frontend**: React.js (with Vite)
 -   **Database**: MongoDB (with Mongoose)
--   **Testing**: Jest
+-   **Testing**: Vitest
 
 ***
 
