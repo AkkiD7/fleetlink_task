@@ -75,7 +75,7 @@ npm run dev
 
 The frontend application should now be running at `http://localhost:5173`.
 
-
+***
 
 ## 📚 API Documentation
 
@@ -111,15 +111,19 @@ The backend server provides the following RESTful API endpoints.
 -   **Responses**:
     -   `200 OK`: Returns an array of available vehicle objects, each including an `estimatedRideDurationHours` field for the requested route.
         ```json
-        [
-          {
-            "_id": "6508c9f5...",
-            "name": "Ashok Leyland Dost",
-            "capacityKg": 1250,
-            "tyres": 4,
-            "estimatedRideDurationHours": 15
-          }
-        ]
+        {
+            "status": true,
+            "message": "Available vehicles fetched successfully.",
+            "data": [
+                {
+                    "_id": "6508c9f5...",
+                    "name": "Ashok Leyland Dost",
+                    "capacityKg": 1250,
+                    "tyres": 4,
+                    "estimatedRideDurationHours": 15
+                }
+            ]
+        }
         ```
 
 ### 3. Book a Vehicle
@@ -140,7 +144,55 @@ The backend server provides the following RESTful API endpoints.
     -   `201 Created`: Returns the newly created booking object if successful.
     -   `409 Conflict`: If the vehicle is already booked for an overlapping time slot.
     -   `404 Not Found`: If the `vehicleId` does not exist.
+    -   `400 Bad Request`: If the request body validation fails.
 
+### 4. Get All Bookings
+
+-   **Endpoint**: `GET /api/bookings`
+-   **Description**: Retrieves a list of all bookings with their corresponding vehicle details populated.
+-   **Responses**:
+    -   `200 OK`: Returns an array of all booking objects.
+        ```json
+        {
+            "success": true,
+            "message": "Bookings Fetched Successfully",
+            "data": [
+                {
+                    "_id": "6509a1b2...",
+                    "customerId": "customer123",
+                    "fromPincode": "422001",
+                    "toPincode": "400072",
+                    "startTime": "2025-10-27T10:00:00.000Z",
+                    "endTime": "2025-10-28T01:00:00.000Z",
+                    "vehicleId": {
+                        "_id": "6508c9f5...",
+                        "name": "Ashok Leyland Dost",
+                        "capacityKg": 1250
+                    }
+                }
+            ]
+        }
+        ```
+    -   `404 Not Found`: If no bookings exist in the database.
+
+### 5. Cancel a Booking
+
+-   **Endpoint**: `DELETE /api/bookings/:id`
+-   **Description**: Deletes/cancels a specific booking using its unique ID.
+-   **Path Parameters**:
+    -   `id` (String): The unique ID of the booking to be cancelled.
+-   **Responses**:
+    -   `200 OK`: Returns a success message confirming the cancellation.
+        ```json
+        {
+            "success": true,
+            "message": "Booking cancelled successfully"
+        }
+        ```
+    -   `404 Not Found`: If a booking with the specified `id` does not exist.
+    -   `500 Internal Server Error`: For server-side errors.
+
+***
 
 
 ## ✅ Running Tests
